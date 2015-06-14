@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
     private EditText    m_EtPwd;
     private EditText    m_EtProxy;
     private EditText    m_EtCallPin;
+    private EditText    m_EtDomain;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,17 +38,21 @@ public class MainActivity extends Activity {
         m_EtPwd = (EditText)findViewById(R.id.et_pwd);
         m_EtProxy = (EditText)findViewById(R.id.et_proxy);
         m_EtCallPin = (EditText)findViewById(R.id.et_call_pin);
+        m_EtDomain = (EditText) findViewById(R.id.et_domain);
 
         AccountInfo accountInfo = new AccountInfo();
         if (accountInfo.readAccount(getFilesDir().getAbsolutePath())){
             m_EtPin.setText(accountInfo.getUsername());
             m_EtPwd.setText(accountInfo.getPassword());
             m_EtProxy.setText(accountInfo.getProxy());
+            m_EtDomain.setText(accountInfo.getDomain());
+
         }else {
-//            m_EtPin.setText("xiaoyong");
-//            m_EtPwd.setText("123456");
+            m_EtPin.setText("testname");
+            m_EtPwd.setText("123456");
             m_EtProxy.setText("10.28.163.203");
-//            m_EtCallPin.setText("10086");
+            m_EtDomain.setText("voip.com");
+            m_EtCallPin.setText("10086");
         }
 
         JdPjsipApp.getInstance().init();
@@ -77,9 +82,16 @@ public class MainActivity extends Activity {
         return tvProxy.getText().toString();
     }
 
-    protected boolean validate(String username, String password, String proxy)
+
+    protected String getDomain()
     {
-        if(username.isEmpty() || password.isEmpty() || proxy.isEmpty())
+        EditText etDomain = (EditText) findViewById(R.id.et_domain);
+        return etDomain.getText().toString();
+    }
+
+    protected boolean validate(String username, String password, String proxy, String domain)
+    {
+        if(username.isEmpty() || password.isEmpty() || proxy.isEmpty() || domain.isEmpty())
         {
             return false;
         }
@@ -91,7 +103,8 @@ public class MainActivity extends Activity {
         String username = getUsername();
         String password = getPassword();
         String proxy = getProxy();
-        if(!validate(username,password,proxy))
+        String domain = getDomain();
+        if(!validate(username,password,proxy, domain))
         {
             Toast.makeText(this, R.string.user_tip, Toast.LENGTH_SHORT).show();
             return;
@@ -104,7 +117,7 @@ public class MainActivity extends Activity {
         if (accName != null && !accName.isEmpty()){
             JdPjsipApp.getInstance().delAccount(accName);
         }
-        accName = JdPjsipApp.getInstance().addAccount(username, password, "voip.jd.com", proxy);
+        accName = JdPjsipApp.getInstance().addAccount(username, password, domain, proxy);
     }
 
     private void ShowCallActivity(String name, CallActivity.CALL_STATE state)
@@ -118,12 +131,12 @@ public class MainActivity extends Activity {
 
     public void onCall(View view)
     {
-        String callName = m_EtCallPin.getText().toString().trim();
-        if(callName.isEmpty() || accName==null || accName.isEmpty())
+        String callee = m_EtCallPin.getText().toString().trim();
+        if(callee.isEmpty() || accName==null || accName.isEmpty())
             return;
-
-        JdPjsipApp.getInstance().MakeCall(callName, accName);
-        ShowCallActivity(callName, CallActivity.CALL_STATE.CS_CALLER); //主叫
+        String calleeUri = JdPjsipApp.getInstance().getCalleeUri(callee, getDomain());
+        JdPjsipApp.getInstance().MakeCall(calleeUri, accName);
+        ShowCallActivity(callee, CallActivity.CALL_STATE.CS_CALLER); //主叫
     }
 
     private MainActivityHandler handler = null;
@@ -174,7 +187,7 @@ public class MainActivity extends Activity {
                         }
                         if (JdAccStatus.JD_ACC_REG_STATUS_OK == statusMsg.getAccStatus()){
                             com.Jd.JDVoip.localdata.AccountInfo accountInfo = new AccountInfo();
-                            accountInfo.writeAccount(getFilesDir().getAbsolutePath(), getUsername(), getPassword(), getProxy());
+                            accountInfo.writeAccount(getFilesDir().getAbsolutePath(), getUsername(), getPassword(), getProxy(), getDomain());
                         }
                     }
                     break;

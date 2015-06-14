@@ -26,6 +26,21 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/et_pwd" android:singleLine="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="域名："
+            android:id="@+id/tv_domain"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="voip.com"
+            android:id="@+id/et_domain" android:singleLine="true"/>
+
+
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,6 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/et_proxy" android:singleLine="true"/>
+
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"

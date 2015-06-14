@@ -204,15 +204,44 @@ public class JdPjsipApp implements JdAccObserver, JdCallObserver {
         return null;
     }
 
+    public String getCalleeUri(String callee, String domain)
+    {
+        String uri = "";
+        if(!callee.startsWith("sip:"))
+        {
+
+            if(callee.indexOf("@") == -1)
+            {
+                uri = "sip:" + callee + "@" + domain;
+            }
+            else
+            {
+                uri = "sip:" + callee;
+            }
+        }
+        else
+        {
+            if(callee.indexOf("@") >= 0)
+            {
+                uri = callee;
+            }
+            else
+            {
+                uri = callee + "@" + domain;
+            }
+        }
+        return uri;
+    }
+
     /*observer inteface implements*/
-    public void MakeCall(String name, String accName) {
+    public void MakeCall(String callee, String accName) {
         JdAccount account = accMgr.getAccount(accName);
         JdCall call = new JdCall(account, -1, this);
         CallOpParam prm = new CallOpParam(true);
         try {
-            String callPin = "sip:" + name + "@voip.jd.com";
-            call.makeCall(callPin, prm);
+            call.makeCall(callee, prm);
         } catch (Exception e) {
+            System.out.println("call("+callee +") exception :"+e.getStackTrace());
             call.delete();
             return;
         }

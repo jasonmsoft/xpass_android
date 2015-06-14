@@ -19,6 +19,7 @@ public class AccountInfo {
     private String username;
     private String password;
     private String proxy;
+    private String domain;
     //private Context context;
 
     private static final String cfgName = "voipAccount.json";
@@ -63,6 +64,7 @@ public class AccountInfo {
             username = person.getString("username");
             password = person.getString("password");
             proxy = person.getString("proxy");
+            domain = person.getString("domain");
             return true;
         } catch (JSONException e) {
             //e.printStackTrace();
@@ -71,10 +73,11 @@ public class AccountInfo {
     }
 
 
-    public void writeAccount(String appDir, String username, String password, String proxy) {
+    public void writeAccount(String appDir, String username, String password, String proxy, String domain) {
         this.username = username;
         this.password = password;
         this.proxy = proxy;
+        this.domain = domain;
 
         String jsonStr = getJsonString();
         if (!jsonStr.isEmpty()){
@@ -105,6 +108,8 @@ public class AccountInfo {
             jsonText.value(password);
             jsonText.key("proxy");
             jsonText.value(proxy);
+            jsonText.key("domain");
+            jsonText.value(domain);
             jsonText.endObject();
             jsonStr = jsonText.toString();
 
@@ -138,5 +143,14 @@ public class AccountInfo {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setDomain(String domain)
+    {
+        this.domain = domain;
+    }
+    public String getDomain()
+    {
+        return domain;
     }
 }
