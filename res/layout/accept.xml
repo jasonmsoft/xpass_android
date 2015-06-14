@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" android:weightSum="1">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+            android:layout_weight="0.06" android:weightSum="1">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="@string/peerinfo"
+                android:id="@+id/tv_peer_name" android:layout_weight="6.42"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+            android:layout_weight="0.06">
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="摘机"
+                android:onClick="onAccept"
+                android:id="@+id/btn_accept" android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+            android:layout_weight="0.06">
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="挂机"
+                android:onClick="onReject"
+                android:id="@+id/btn_reject" android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
+
+</LinearLayout>

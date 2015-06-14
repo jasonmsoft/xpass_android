@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JDVoip</string>
+    <string name="user_tip">用户信息不完整</string>
+    <string name="peerinfo">来电显示区域</string>
+    <string name="calling_text">正在通话中...</string>
+    <string name="called_text">通话结束</string>
+    <string name="finished">完成</string>
+    <string name="speaker_state_on">免提【打开】</string>
+    <string name="speaker_state_off">免提【关闭】</string>
+    <string name="hungup">挂断</string>
+    <string name="have_call">有来电...</string>
+</resources>
