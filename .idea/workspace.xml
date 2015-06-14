@@ -118,9 +118,10 @@
       <file leaf-file-name="XpassService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/Jd/JDVoip/xpass_service/XpassService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37029704">
-              <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.52871287">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
+                <element signature="e#259#260#0" expanded="true" />
                 <element signature="e#275#276#0" expanded="true" />
               </folding>
             </state>
@@ -1239,9 +1240,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Jd/JDVoip/xpass_service/XpassService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37029704">
-          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.52871287">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
+            <element signature="e#259#260#0" expanded="true" />
             <element signature="e#275#276#0" expanded="true" />
           </folding>
         </state>

@@ -12,4 +12,23 @@ public class XpassService extends Service{
 public IBinder onBind(Intent intent) {
 	return null;
 }
+
+@Override
+public void onCreate()
+{
+
+}
+
+@Override
+public void onStart(Intent intent, int startId)
+{
+
+}
+
+@Override
+public void onDestroy()
+{
+
+}
+
 }
