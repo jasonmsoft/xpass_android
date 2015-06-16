@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">JDVoip</string>
+    <string name="app_name">Xpass</string>
     <string name="user_tip">用户信息不完整</string>
     <string name="peerinfo">来电显示区域</string>
     <string name="calling_text">正在通话中...</string>
