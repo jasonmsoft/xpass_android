@@ -10,9 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.os.Handler;
 import com.Xpass.XpassVoip.R;
-import com.Xpass.XpassVoip.pjsua2_impl.XpassAudioMgr;
-import com.Xpass.XpassVoip.pjsua2_impl.XpassPjsipApp;
-import com.Xpass.XpassVoip.pjsua2_impl.XpassPjsipMessageType;
+import com.Xpass.XpassVoip.pjsua2_impl.*;
 import org.pjsip.pjsua2.CallInfo;
 import org.pjsip.pjsua2.CallOpParam;
 import org.pjsip.pjsua2.pjsip_inv_state;
@@ -113,15 +111,16 @@ public class CallActivity extends Activity
     {
         if(msg.what == XpassPjsipMessageType.Xpass_PJSIP_MESSAGE_TYPE_CALL_STATE)
         {
-            CallInfo ci = (CallInfo) msg.obj;
-            if (ci.getState() == pjsip_inv_state.PJSIP_INV_STATE_CONFIRMED)
+            int callId = msg.arg1;
+            int cs = msg.arg2;
+            if (cs == XpassCall.CALL_STATE_CONFIRMED)
             {
                StartCall();
             }
 
-            else if (ci.getState() == pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED)
+            else if (cs == XpassCall.CALL_STATE_CLOSED)
             {
-                System.out.println("call is disconnected");
+                XpassUtil.log("call is disconnected");
                 EndCall();
                 if (textState != null)
                 {
@@ -155,9 +154,7 @@ public class CallActivity extends Activity
 
         if(callState == CALL_STATE.CS_CALLER || callState == CALL_STATE.CS_CALLING )
         {
-            CallOpParam prm = new CallOpParam();
-            prm.setStatusCode(pjsip_status_code.PJSIP_SC_DECLINE);
-            XpassPjsipApp.getInstance().Hangup(prm);
+            XpassPjsipApp.getInstance().Hangup();
         }
         callState = CALL_STATE.CALL_STATE_UNKNOWN;
     }
