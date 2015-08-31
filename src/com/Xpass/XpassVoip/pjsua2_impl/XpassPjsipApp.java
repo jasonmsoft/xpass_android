@@ -111,7 +111,7 @@ public class XpassPjsipApp implements XpassAccObserver, XpassCallObserver
 				mediaConfig.setEcTailLen(XpassPjsipAppConfig.getEcTailLen());
 				mediaConfig.setIlbcMode(XpassPjsipAppConfig.getIlbcMode());
 				mediaConfig.setRxDropPct(XpassPjsipAppConfig.getRxDropPct());
-
+				mediaConfig.setNoVad(true);
 				try
 				{
 					ep.libInit(epConfig);
